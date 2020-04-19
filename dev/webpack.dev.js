@@ -1,22 +1,22 @@
 const path = require('path')
-const webpack = require('webpack');
-const merge = require('webpack-merge');
-const baseConfig = require('./webpack.common').webpack_config;
-const PUBLIC_URL = require('./webpack.common').PUBLIC_URL;
-const autoprefixer = require('autoprefixer');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpack = require('webpack')
+const merge = require('webpack-merge')
+const baseConfig = require('./webpack.common').webpack_config
+const PUBLIC_URL = require('./webpack.common').PUBLIC_URL
+const autoprefixer = require('autoprefixer')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const config = merge(baseConfig, {
   mode: 'development',
   devtool: 'inline-source-map',
   output: {
-    publicPath: PUBLIC_URL
+    publicPath: PUBLIC_URL,
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'css/[name].css'
-    })
+      filename: 'css/[name].css',
+    }),
   ],
   module: {
     rules: [
@@ -30,15 +30,13 @@ const config = merge(baseConfig, {
             options: {
               url: true,
               importLoaders: 2,
-            }
+            },
           },
           {
             loader: 'postcss-loader',
             options: {
-              plugins: [
-                autoprefixer(),
-              ]
-            }
+              plugins: [autoprefixer()],
+            },
           },
           {
             loader: 'sass-loader',
@@ -54,15 +52,15 @@ const config = merge(baseConfig, {
               pretty: true,
               data: {
                 PUBLIC_URL: PUBLIC_URL,
-                env: 'develop'
-              }
+                env: 'develop',
+              },
             },
-          }
-        ]
-      }
-    ]
-  }
-});
+          },
+        ],
+      },
+    ],
+  },
+})
 
 // entryにhot-middlewareを追加する
 for (const key in config.entry) {
@@ -70,8 +68,8 @@ for (const key in config.entry) {
   config.entry[key] = [
     'webpack-hot-middleware/client',
     'webpack/hot/dev-server',
-    path.resolve(__dirname, orgPath)
+    path.resolve(__dirname, orgPath),
   ]
 }
 
-module.exports = config;
+module.exports = config

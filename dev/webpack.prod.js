@@ -21,17 +21,13 @@ const config = merge(baseConfig, {
             options: {
               url: true,
               importLoaders: 2,
-
-            }
+            },
           },
           {
             loader: 'postcss-loader',
             options: {
-              plugins: [
-                autoprefixer(),
-                cssnano()
-              ]
-            }
+              plugins: [autoprefixer(), cssnano()],
+            },
           },
           {
             loader: 'sass-loader',
@@ -47,29 +43,29 @@ const config = merge(baseConfig, {
               pretty: true,
               data: {
                 PUBLIC_URL: PUBLIC_URL,
-                env: 'production'
-              }
+                env: 'production',
+              },
             },
-          }
-        ]
-      }
-    ]
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'css/[name].css'
+      filename: 'css/[name].css',
     }),
     new ImageminPlugin({
       pngquant: {
-        quality: '65-80'
-      }
+        quality: '65-80',
+      },
     }),
   ],
   optimization: {
     minimizer: [
       new TerserPlugin({
         extractComments: 'all',
-      })
+      }),
     ],
     splitChunks: {
       cacheGroups: {
@@ -77,11 +73,11 @@ const config = merge(baseConfig, {
           test: /node_modules/,
           name: 'vendor',
           chunks: 'initial',
-          enforce: true
-        }
-      }
-    }
-  }
-});
+          enforce: true,
+        },
+      },
+    },
+  },
+})
 
 module.exports = config

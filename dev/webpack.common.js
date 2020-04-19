@@ -10,28 +10,23 @@ const PUBLIC_URL = '/public'
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 const webpack_config = {
-  entry: globEntries('./src/javascripts/*.js'),
+  entry: globEntries('./src/typescript/*.ts'),
   output: {
     path: path.resolve(__dirname, '../htdocs' + PUBLIC_URL),
-    filename: 'js/[name].js'
+    filename: 'js/[name].js',
   },
   module: {
     rules: [
       {
         enforce: 'pre',
-        test: /\.(js)$/,
+        test: [/\.ts$/, /\.tsx$/, /\.js$/],
         exclude: /node_modules/,
-        loader: 'eslint-loader'
+        loader: 'eslint-loader',
       },
       {
-        test: /\.(js)$/,
+        test: [/\.ts$/, /\.tsx$/, /\.js$/],
         exclude: /node_modules/,
-        loader: 'babel-loader',
-        options: {
-          presets: [
-            '@babel/preset-env'
-          ]
-        }
+        loader: 'ts-loader',
       },
       {
         test: /\.pug$/,
@@ -40,20 +35,20 @@ const webpack_config = {
             loader: 'file-loader',
             options: {
               name: '[path][name].html',
-              outputPath: (url) => {
+              outputPath: url => {
                 return path.relative('src/pages', url)
               },
-              url: false
-            }
+              url: false,
+            },
           },
           'extract-loader',
           {
             loader: 'html-loader',
             options: {
-              attrs: ['img:src', ':data-src']
-            }
-          }
-        ]
+              attrs: ['img:src', ':data-src'],
+            },
+          },
+        ],
       },
       {
         test: /\.(jpg|png|gif|svg)$/,
@@ -64,37 +59,37 @@ const webpack_config = {
               name: '[name].[ext]',
               outputPath: 'materials/',
               publicPath: url => {
-                return PUBLIC_URL + '/materials/' + url;
-              }
-            }
-          }
-        ]
+                return PUBLIC_URL + '/materials/' + url
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.(glsl|vs|fs|vert|frag)$/,
         exclude: /node_modules/,
-        loader: 'raw-loader'
+        loader: 'raw-loader',
         // loader: 'shader-loader'
-      }
-    ]
+      },
+    ],
   },
   resolve: {
-    extensions: ['.js'],
+    extensions: ['.js', '.ts'],
   },
   plugins: [
     new CopyPlugin([
       {
         from: './public/',
-        to: './'
-      }
+        to: './',
+      },
     ]),
     new webpack.DefinePlugin({
-      'process.env.PUBLIC_URL': JSON.stringify(PUBLIC_URL)
-    })
-  ]
-};
+      'process.env.PUBLIC_URL': JSON.stringify(PUBLIC_URL),
+    }),
+  ],
+}
 
 module.exports = {
   webpack_config,
-  PUBLIC_URL
+  PUBLIC_URL,
 }

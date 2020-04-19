@@ -52,9 +52,11 @@
 
 /***/
 
-// pugをインポートする
+/** @class */
 
 /* 3 */
+
+// pugをインポートする
 
 /* 4 */
 
@@ -64,22 +66,8 @@
 
 /* 7 */
 
-// extracted by mini-css-extract-plugin
-
 /* 8 */
 
-// EXTERNAL MODULE: ./src/javascripts/modules/importPug.js
+// extracted by mini-css-extract-plugin
 
-// EXTERNAL MODULE: ./src/css/main.scss
-
-/*#__PURE__*/
-
-// CONCATENATED MODULE: ./src/javascripts/main.js
-
-/**
-   * init
-  */
-
-/**
-     * click
-     */
+/* 9 */

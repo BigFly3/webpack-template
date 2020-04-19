@@ -14,10 +14,7 @@ const server = browserSync({
   port: 3000,
   ghostMode: false,
   server: {
-    middleware: [
-      webpackDevMiddlewareInstance,
-      webpackHotMiddleware(bundler)
-    ]
+    middleware: [webpackDevMiddlewareInstance, webpackHotMiddleware(bundler)],
   },
   startPath: webpackConfig.output.publicPath,
   open: 'external',
@@ -31,7 +28,7 @@ const server = browserSync({
           console.log('finish')
           server.reload()
         })
-      }
-    }
-  ]
+      },
+    },
+  ],
 })
