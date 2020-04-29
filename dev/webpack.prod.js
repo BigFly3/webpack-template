@@ -1,3 +1,4 @@
+const path = require('path')
 const merge = require('webpack-merge')
 const autoprefixer = require('autoprefixer')
 const cssnano = require('cssnano')
@@ -7,6 +8,7 @@ const ImageminPlugin = require('imagemin-webpack-plugin').default
 const PUBLIC_URL = require('./webpack.common').PUBLIC_URL
 
 const baseConfig = require('./webpack.common.js').webpack_config
+const metajson = require('./meta.json')
 
 const config = merge(baseConfig, {
   mode: 'production',
@@ -42,13 +44,16 @@ const config = merge(baseConfig, {
         test: /\.pug$/,
         use: [
           {
-            loader: 'pug-html-loader',
+            loader: 'pug-html-info-loader',
             options: {
               pretty: true,
               data: {
                 PUBLIC_URL: PUBLIC_URL,
-                env: 'production'
-              }
+                env: 'production',
+                globalConf:metajson['global'],
+                localConf:metajson['local']
+              },
+              basePath:path.resolve(__dirname,'src/pages'),
             },
           }
         ]

@@ -1,12 +1,13 @@
 -
-  var title = '';
+  var config = localConf[pathInfo.html] ? localConf[pathInfo.html]:globalConf;
+  var title = config.title;
   var faviconPath = '../../materials/favicon/'
-  var description = 'description';
+  var description = config.description;
   var ogp = {
-    url: 'https://',
-    image: 'https://',
-    type: 'website',
-    siteName: ''
+    url: config.ogp_url,
+    image: config.ogp_image,
+    type: globalConf.ogp_type,
+    siteName: globalConf.ogp_siteName
   };
 
 block variables

@@ -13,3 +13,4 @@
 - `public` ディレクトリ内のリソースはそのまま納品ファイルにコピー
 - `webpack.common.js` 内の`PUBLIC_URL`を変更するとルートディレクトリが変わります
 - `src/pages/`配下のpugファイルはディレクトリ構造を保ったままhtmlファイルとして生成
+- `meta.json` pathで指定されたmeta情報を動的に出し分け

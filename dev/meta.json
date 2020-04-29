@@ -1,0 +1,24 @@
+{
+  "global": {
+    "title": "common title",
+    "description": "common description",
+    "ogp_url": "common ogp_url",
+    "ogp_image": "common ogp_image",
+    "ogp_type": "common ogp_type",
+    "ogp_siteName": "common ogp_siteName"
+  },
+  "local": {
+    "index.html": {
+      "title": "TOP title",
+      "description": "TOP description",
+      "ogp_url": "TOP ogp_url",
+      "ogp_image": "TOP ogp_image"
+    },
+    "another/test/index.html": {
+      "title": "AnothreTest title",
+      "description": "AnothreTest description",
+      "ogp_url": "AnothreTest ogp_url",
+      "ogp_image": "AnothreTest ogp_image"
+    }
+  }
+}

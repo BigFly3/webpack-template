@@ -5,6 +5,7 @@ const baseConfig = require('./webpack.common').webpack_config;
 const PUBLIC_URL = require('./webpack.common').PUBLIC_URL;
 const autoprefixer = require('autoprefixer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const metajson = require('./meta.json')
 
 const config = merge(baseConfig, {
   mode: 'development',
@@ -49,13 +50,16 @@ const config = merge(baseConfig, {
         test: /\.pug$/,
         use: [
           {
-            loader: 'pug-html-loader',
+            loader: 'pug-html-info-loader',
             options: {
               pretty: true,
               data: {
                 PUBLIC_URL: PUBLIC_URL,
-                env: 'develop'
-              }
+                env: 'develop',
+                globalConf:metajson['global'],
+                localConf:metajson['local']
+              },
+              basePath:path.resolve(__dirname,'src/pages'),
             },
           }
         ]
